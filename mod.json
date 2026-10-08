@@ -1,0 +1,10 @@
+{
+  "id": "eaglercraft_elemental_golems",
+  "name": "Elemental Golem Bosses",
+  "version": "0.1.0",
+  "author": "Copilot",
+  "description": "Adds giant elemental golem bosses with fire, water, earth, and storm powers.",
+  "main": "src/main.js",
+  "targets": ["eaglercraft", "browser-client", "custom-mod-loader"],
+  "tags": ["boss", "golem", "elemental", "magic", "combat"]
+}
