@@ -1,67 +1,85 @@
 # Eaglercraft Elemental Golem Bosses
 
-A starter mod concept for an Eaglercraft-style Minecraft project featuring giant boss golems with elemental powers.
+A stronger starter pack for an Eaglercraft-compatible boss mod featuring massive elemental golems with arena mechanics, boss phases, ritual summoning, and special loot.
 
-## Features
+## Included features
 
-- Four elemental boss variants:
-  - Fire Golem: lava bursts, flame projectiles, molten shockwaves
-  - Water Golem: tidal waves, freezing mist, healing pulse
-  - Earth Golem: stone spikes, ground slam, shielded armor phase
-  - Storm Golem: lightning bolts, magnetic pulls, aerial dash
-- Giant boss-sized models and arena mechanics
-- Special drops and boss-summoning ritual items
-- Boss phases and elemental attack patterns
+- Fire, Water, Earth, and Storm golem bosses
+- Boss phase states: summon, enraged, final form
+- Elemental attack patterns and status effects
+- Boss arena generation helper
+- Ritual-based summoning system
+- Loot tables and boss drops
+- Startup registration logic for custom mod loaders
 
-## Project structure
+## Boss lineup
+
+### Inferno Titan (Fire)
+- Lava bursts
+- Molten shockwaves
+- Flame breath
+- Burn effect on players
+
+### Tidebreaker (Water)
+- Tidal waves
+- Frost pulses
+- Healing aura when below 40% HP
+- Water control and slowdown effects
+
+### Granite Warden (Earth)
+- Ground smash
+- Stone spike barrage
+- Shielded armor phase
+- High defense and stun pressure
+
+### Tempest Colossus (Storm)
+- Air dashes
+- Lightning arcs
+- Thunder pulses
+- Electric knockback and mobility pressure
+
+## Ritual summoning
+
+The project now includes a ritual system that defines the required pattern for summoning bosses using elemental cores and a center altar. This is designed to be easy to map to custom blocks, world events, or server-side commands.
+
+## Files
 
 - `mod.json` — mod metadata
-- `src/main.js` — mod bootstrap and registration
-- `src/elementalGolemBosses.js` — boss definitions and combat logic
+- `src/main.js` — mod bootstrap
+- `src/elementalGolemBosses.js` — boss registry, stats, phases, loot, and arena generation
+- `src/rituals.js` — summon ritual logic for boss activation
 
-## Quick start
-
-1. Place the files in your Eaglercraft or custom mod project.
-2. Ensure your loader reads `mod.json` and loads `src/main.js`.
-3. Add the boss spawn items or ritual blocks in your own world generation system.
-4. Spawn or trigger a boss using the `spawnBoss` helper from the mod bootstrap.
-
-## Example boss usage
+## Example usage
 
 ```js
-import { spawnBoss } from './elementalGolemBosses.js';
+import { summonGolemBoss } from './elementalGolemBosses.js';
 
-spawnBoss('fire');
-spawnBoss('storm');
+const boss = summonGolemBoss('storm', {
+  x: 100,
+  y: 64,
+  z: 100,
+  difficulty: 'hard'
+});
+
+console.log('Boss spawned:', boss.name);
 ```
 
-## Notes
+## Inspiration for your actual Eaglercraft setup
 
-This project is intentionally built as a strong mod starter and prototype. Eaglercraft client APIs vary between forks and custom loaders, so the code is designed to be easy to adapt into your specific game environment.
+If you are integrating this into a custom client or fork of Eaglercraft, the next steps are:
 
-## Boss concept summary
+1. Create custom boss entity classes in the entity layer.
+2. Hook the boss registry into your entity spawner.
+3. Bind the ritual objects to blocks or item interactions.
+4. Add custom textures and boss bars.
+5. Balance the health/damage values for your specific game version.
 
-### Fire Golem
-- Behavior: close-range smash, fire waves, flaming armor
-- Power: high damage and burn effects
+## Suggested next upgrades
 
-### Water Golem
-- Behavior: ranged splash attacks and area control
-- Power: crowd control, healing, and water bursts
+- Add a final boss: The Worldforger or Primordial Golem
+- Add custom boss music and roar samples
+- Add elemental armor and weapons as drops
+- Add unique achievements or titles
+- Create a special arena biome
 
-### Earth Golem
-- Behavior: terrain disruption and armor-heavy defense
-- Power: stuns, hard shield, spike walls
-
-### Storm Golem
-- Behavior: teleport strikes, lightning arcs, ranged field damage
-- Power: aggressive burst and mobility
-
-## Future additions
-
-- boss arena structure
-- custom boss bar UI
-- elemental core drops
-- summon ritual blocks
-- boss music and sound effects
-- unique loot tables
+This starter kit is intentionally modular so you can expand it without replacing the whole structure.
